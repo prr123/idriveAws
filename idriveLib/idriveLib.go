@@ -16,7 +16,8 @@ import (
 type IdriveObj struct {
     Url string `yaml:"url"`
     Bucket string `yaml:"bucket"`
-    Key string `yaml:"key!`
+	Region string `yaml:"region"`
+    Key string `yaml:"key"`
 	Secret string
 }
 
@@ -67,6 +68,7 @@ func PrintApiObj(api *IdriveObj) {
     fmt.Println("************ Idrive Api Object ************")
     if api == nil {return}
     fmt.Printf("Url:    %s\n", api.Url)
+	fmt.Printf("Region: %s\n", api.Region)
     fmt.Printf("Bucket: %s\n", api.Bucket)
     fmt.Printf("Key:    %s\n", api.Key)
     fmt.Println("********* End Idrive Api Object ***********")
