@@ -24,7 +24,17 @@ func main() {
 
 	secret, err := getSecret()
 	if err != nil {log.Fatalf("getSecret: %v\n", err)}
-	log.Printf("secret: %s", secret)
+	log.Printf("secret[%d]: |%s|", len(secret), secret)
+
+	secDat := []byte(secret)
+	if secDat[0] == ' ' {log.Fatalf("leading whitespace")}
+	secLast := len(secDat) -1
+	if secDat[secLast] == '\n' {
+		log.Printf("secret last char: %q\n", secDat[len(secDat) -1] )
+		secret = string(secDat[:secLast])
+	}
+	log.Printf("secret second last char: %q\n", secDat[len(secDat) -2] )
+	log.Printf("rev secret[%d]: |%s|", len(secret), secret)
 
 	api, err := getIdriveApi("idriveApi.yaml")
 	if err != nil {log.Fatalf("getIdriveApi: %v\n", err)}
